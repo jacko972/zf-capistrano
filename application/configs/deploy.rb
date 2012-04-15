@@ -28,3 +28,15 @@ namespace :deploy do
     end
 
 end
+
+namespace :myproject do
+
+    task :symlink, :roles => :app do
+        run "mkdir -p #{release_path}/library"
+        run "chmod -R 755 #{release_path}/library"
+        run "ln -nfs /usr/local/ZendFramework-1.11.11/library/Zend #{release_path}/library/Zend"
+    end
+
+end
+
+after "deploy:symlink", "myproject:symlink"
