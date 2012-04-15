@@ -32,11 +32,18 @@ end
 namespace :myproject do
 
     task :symlink, :roles => :app do
-        run "mkdir -p #{release_path}/library"
-        run "chmod -R 755 #{release_path}/library"
-        run "ln -nfs /usr/local/ZendFramework-1.11.11/library/Zend #{release_path}/library/Zend"
+        run "mkdir -p #{shared_path}/library"
+        run "chmod -R 755 #{shared_path}/library"
+        run "ln -nfs /usr/local/ZendFramework-1.11.11/library/Zend #{shared_path}/library/Zend"
+        run "ln -nfs #{shared_path}/library #{release_path}/library"
+    end
+
+    task :uploads, :roles => :app do
+        run "mkdir -p #{shared_path}/public/uploads"
+        run "chmod -R 775 #{shared_path}/public/uploads"
+        run "ln -nfs #{shared_path}/public/uploads #{release_path}/public/uploads"
     end
 
 end
 
-after "deploy:symlink", "myproject:symlink"
+after "deploy:symlink", "myproject:symlink", "myproject:uploads"
