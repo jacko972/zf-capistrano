@@ -1,6 +1,6 @@
 This is a demo app made up for my talk on ZFConf 2012 "Capistrano for PHP applications deployment": http://www.zfconf.ru/2012/talks/capistrano-for-deployment-php-applications/.
 
-This example gives an example of ZF1 app and basic capistrano for it.
+This example gives an example of ZF1 app and basic capistrano config for it.
 
 Demo app is from Rob Allen's tutorial: http://akrabat.com/zend-framework-tutorial/
 
